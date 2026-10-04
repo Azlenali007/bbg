@@ -1,0 +1,23 @@
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(\.env|\.git|composer\.|package\.json|package-lock\.json|vite\.config\.js)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect sensitive directories
+RewriteEngine On
+RewriteRule ^(database|includes|providers|payments|cron|app|storage/logs|storage/cache|storage/backups)/.*$ - [F,L]
+
+# Prevent script execution in uploads
+RewriteRule ^storage/uploads/.*\.(php|phtml|php3|php4|php5|php7|phps|cgi|pl|sh)$ - [F,L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

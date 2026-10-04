@@ -1,0 +1,23 @@
+# Secrets & Environment
+.env
+
+# Storage
+storage/logs/*
+storage/cache/*
+storage/uploads/*
+storage/backups/*
+!storage/logs/.gitkeep
+!storage/cache/.gitkeep
+!storage/uploads/.gitkeep
+!storage/backups/.gitkeep
+
+# Node & Build
+node_modules/
+dist/
+.vite/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
